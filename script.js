@@ -1,8 +1,3 @@
-// Check device
-const isMobile =
-  /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-    navigator.userAgent
-  );
 // Game elements
 const main = document.querySelector("main");
 const startPage = document.querySelector(".start-page");
@@ -23,7 +18,7 @@ const startBtn = document.querySelector(".start-btn");
 const endBtn = document.querySelector(".restart-btn");
 const newBallBtn = document.querySelector(".new-ball-btn");
 const scoreDiv = document.querySelector(".score span");
-const speed = 5
+const speed = 5;
 
 // Game values
 
@@ -45,7 +40,13 @@ const bGImagesArray = [
   "./images/green-ground.jpg",
   "./images/pink-ground.jpg",
 ];
-const ballsArray = ["red-ball", "lila-ball", "orange-ball","pink-ball","green-ball"];
+const ballsArray = [
+  "red-ball",
+  "lila-ball",
+  "orange-ball",
+  "pink-ball",
+  "green-ball",
+];
 const ballTouchPoint = canvasHeight * 0.8;
 const ballStartPosition = isMobile ? canvasHeight * 0.4 : canvasHeight * 0.25;
 // Game classes
@@ -139,8 +140,8 @@ bgArray.push(bG2);
 
 // Game functions
 function startGame() {
-  ballSpeed = isMobile ? 4 :speed;
-  bgSpeed = isMobile ? 1.7 :speed;
+  ballSpeed = speed;
+  bgSpeed = speed;
   ball.speed = ballSpeed;
   bG1.speed = bgSpeed;
   bG2.speed = bgSpeed;
@@ -157,11 +158,11 @@ function animate() {
     if (score === 40) {
       cancelAnimationFrame(animateId);
       newBallPage.classList.remove("d-none");
-      speed++
+      speed++;
     }
     if (score === 150) {
       cancelAnimationFrame(animateId);
-    
+
       bGImagesArray.push("./images/pink-ground.jpg");
       newBall.src = "./images/pink-ball.png";
       newBallPage.classList.remove("d-none");
@@ -169,7 +170,7 @@ function animate() {
     }
     if (score === 220) {
       cancelAnimationFrame(animateId);
-    
+
       bGImagesArray.push("./images/blue-ground.jpg");
       newBall.src = "./images/blue-ball.png";
       newBallPage.classList.remove("d-none");
