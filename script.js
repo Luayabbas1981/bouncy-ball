@@ -154,17 +154,7 @@ function animate() {
   } else if (ball.y >= ballTouchPoint && ball.id === bG1.id) {
     score += 10;
     scoreDiv.textContent = score;
-    if (score === 30) {
-      cancelAnimationFrame(animateId);
-      newBallPage.classList.remove("d-none");
-      speed++;
-    }
-    if (score === 70) {
-      cancelAnimationFrame(animateId);
-      newBallPage.classList.remove("d-none");
-      speed++;
-    }
-    if (score === 100) {
+    if (score % 30 === 0) {
       cancelAnimationFrame(animateId);
       newBallPage.classList.remove("d-none");
       speed++;
