@@ -1,8 +1,3 @@
-// Check device
-const isMobile =
-  /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-    navigator.userAgent
-  );
 // Game elements
 const main = document.querySelector("main");
 const startPage = document.querySelector(".start-page");
@@ -22,10 +17,8 @@ endSound.volume = 0.1;
 const startBtn = document.querySelector(".start-btn");
 const endBtn = document.querySelector(".restart-btn");
 const newBallBtn = document.querySelector(".new-ball-btn");
-const levelDiv = document.querySelector(".level span");
 const scoreDiv = document.querySelector(".score span");
-const speedInputValue = document.querySelector(".speed-input");
-
+const speed = 5;
 // Game values
 
 let ball = null;
@@ -34,7 +27,6 @@ let bG2 = null;
 let bgSpeed = null;
 let ballSpeed = null;
 let previousBall = 1;
-let level = 1;
 let score = 0;
 let groundIndex = 0;
 let keyboard = true;
@@ -44,10 +36,18 @@ const bGImagesArray = [
   "./images/red-ground.jpg",
   "./images/lila-ground.jpg",
   "./images/orange-ground.jpg",
+  "./images/green-ground.jpg",
+  "./images/pink-ground.jpg",
 ];
-const ballsArray = ["red-ball", "lila-ball", "orange-ball"];
-const ballTouchPoint = canvasHeight * 0.8;
-const ballStartPosition = isMobile ? canvasHeight * 0.4 : canvasHeight * 0.25;
+const ballsArray = [
+  "red-ball",
+  "lila-ball",
+  "orange-ball",
+  "green-ball",
+  "pink-ball",
+];
+const ballTouchPoint = canvasHeight * 0.77;
+const ballStartPosition = canvasHeight * 0.25;
 // Game classes
 
 class Background {
@@ -116,8 +116,8 @@ ball = new Ball(
   "./images/lila-ball.png",
   canvasWidth * 0.3,
   ballStartPosition + 50,
-  isMobile ? canvasHeight * 0.05 : canvasWidth * 0.05,
-  isMobile ? canvasHeight * 0.05 : canvasWidth * 0.05
+  canvasWidth * 0.05,
+  canvasWidth * 0.05
 );
 
 bG1 = new Background(
@@ -139,8 +139,8 @@ bgArray.push(bG2);
 
 // Game functions
 function startGame() {
-  ballSpeed = isMobile ? 4 : Number(speedInputValue.value);
-  bgSpeed = isMobile ? 1.7 : Number(speedInputValue.value);
+  ballSpeed = speed;
+  bgSpeed = speed;
   ball.speed = ballSpeed;
   bG1.speed = bgSpeed;
   bG2.speed = bgSpeed;
@@ -156,30 +156,15 @@ function animate() {
     scoreDiv.textContent = score;
     if (score === 70) {
       cancelAnimationFrame(animateId);
-      level++;
-      levelDiv.textContent = level;
-      bGImagesArray.push("./images/green-ground.jpg");
-      newBall.src = "./images/green-ball.png";
       newBallPage.classList.remove("d-none");
-      ballsArray.push("green-ball");
     }
     if (score === 150) {
       cancelAnimationFrame(animateId);
-      level++;
-      levelDiv.textContent = level;
-      bGImagesArray.push("./images/pink-ground.jpg");
-      newBall.src = "./images/pink-ball.png";
       newBallPage.classList.remove("d-none");
-      ballsArray.push("pink-ball");
     }
     if (score === 220) {
       cancelAnimationFrame(animateId);
-      level++;
-      levelDiv.textContent = level;
-      bGImagesArray.push("./images/blue-ground.jpg");
-      newBall.src = "./images/blue-ball.png";
       newBallPage.classList.remove("d-none");
-      ballsArray.push("blue-ball");
     }
   }
   if (bG2.x <= canvas.getBoundingClientRect().left) {
