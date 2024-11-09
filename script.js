@@ -18,7 +18,7 @@ const startBtn = document.querySelector(".start-btn");
 const endBtn = document.querySelector(".restart-btn");
 const newBallBtn = document.querySelector(".new-ball-btn");
 const scoreDiv = document.querySelector(".score span");
-const speed = 5;
+let speed = 5;
 // Game values
 
 let ball = null;
@@ -154,17 +154,20 @@ function animate() {
   } else if (ball.y >= ballTouchPoint && ball.id === bG1.id) {
     score += 10;
     scoreDiv.textContent = score;
+    if (score === 30) {
+      cancelAnimationFrame(animateId);
+      newBallPage.classList.remove("d-none");
+      speed++;
+    }
     if (score === 70) {
       cancelAnimationFrame(animateId);
       newBallPage.classList.remove("d-none");
+      speed++;
     }
-    if (score === 150) {
+    if (score === 100) {
       cancelAnimationFrame(animateId);
       newBallPage.classList.remove("d-none");
-    }
-    if (score === 220) {
-      cancelAnimationFrame(animateId);
-      newBallPage.classList.remove("d-none");
+      speed++;
     }
   }
   if (bG2.x <= canvas.getBoundingClientRect().left) {
