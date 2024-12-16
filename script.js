@@ -50,7 +50,7 @@ const ballsArray = [
   "green-ball",
 ];
 const ballTouchPoint = isMobile ? canvasHeight * 0.8 : canvasHeight * 0.77;
-const ballStartPosition = isMobile ? canvasHeight * 0.4 : canvasHeight * 0.25;
+const ballStartPosition = isMobile ? canvasHeight * 0.35 : canvasHeight * 0.25;
 // Game classes
 
 class Background {
