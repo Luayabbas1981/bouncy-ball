@@ -160,7 +160,7 @@ function animate() {
     if (score % 40 === 0) {
       cancelAnimationFrame(animateId);
       newBallPage.classList.remove("d-none");
-      isMobile ? (speed += 0.3) : speed++;
+      isMobile ? (speed += 0.2) : speed++;
       ball.speed = speed;
       bG1.speed = speed;
       bG2.speed = speed;
