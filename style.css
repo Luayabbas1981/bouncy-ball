@@ -27,7 +27,7 @@ header {
   height: 4%;
   background: url(./images/header-bg.png) no-repeat;
   background-size: 100% 120%;
-  color: #2196f3;
+  color: #673ab7;
   letter-spacing: 5px;
 }
 main {
@@ -38,7 +38,7 @@ main {
 .start-page .modals {
   width: 45%;
   height: 35%;
-  color: #03a9f4;
+  color: #673ab7;
   font-weight: 200;
 }
 .start-page {
@@ -61,7 +61,8 @@ main {
   color: #ff9800;
   padding: 0.5rem;
 }
-.set-speed ,.speed-input{
+.set-speed,
+.speed-input {
   color: #9c27b0;
 }
 

@@ -18,9 +18,11 @@ const startBtn = document.querySelector(".start-btn");
 const endBtn = document.querySelector(".restart-btn");
 const newBallBtn = document.querySelector(".new-ball-btn");
 const scoreDiv = document.querySelector(".score span");
-let speed = 5;
 // Game values
-
+const isMobile =
+  /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent
+  );
 let ball = null;
 let bG1 = null;
 let bG2 = null;
@@ -32,22 +34,23 @@ let groundIndex = 0;
 let keyboard = true;
 let animateId = null;
 let bgArray = [];
+let speed = isMobile ? 2 : 5;
 const bGImagesArray = [
   "./images/red-ground.jpg",
   "./images/lila-ground.jpg",
+  "./images/blue-ground.jpg",
   "./images/orange-ground.jpg",
   "./images/green-ground.jpg",
-  "./images/pink-ground.jpg",
 ];
 const ballsArray = [
   "red-ball",
   "lila-ball",
+  "blue-ball",
   "orange-ball",
   "green-ball",
-  "pink-ball",
 ];
-const ballTouchPoint = canvasHeight * 0.77;
-const ballStartPosition = canvasHeight * 0.25;
+const ballTouchPoint = isMobile ? canvasHeight * 0.8 : canvasHeight * 0.77;
+const ballStartPosition = isMobile ? canvasHeight * 0.4 : canvasHeight * 0.25;
 // Game classes
 
 class Background {
@@ -116,8 +119,8 @@ ball = new Ball(
   "./images/lila-ball.png",
   canvasWidth * 0.3,
   ballStartPosition + 50,
-  canvasWidth * 0.05,
-  canvasWidth * 0.05
+  isMobile ? canvasWidth * 0.11 : canvasWidth * 0.05,
+  isMobile ? canvasWidth * 0.11 : canvasWidth * 0.05
 );
 
 bG1 = new Background(
@@ -154,10 +157,13 @@ function animate() {
   } else if (ball.y >= ballTouchPoint && ball.id === bG1.id) {
     score += 10;
     scoreDiv.textContent = score;
-    if (score % 30 === 0) {
+    if (score % 40 === 0) {
       cancelAnimationFrame(animateId);
       newBallPage.classList.remove("d-none");
-      speed++;
+      isMobile ? (speed += 0.5) : speed++;
+      ball.speed = speed;
+      bG1.speed = speed;
+      bG2.speed = speed;
     }
   }
   if (bG2.x <= canvas.getBoundingClientRect().left) {
