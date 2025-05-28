@@ -30,11 +30,8 @@ header {
   height: 4%;
   background: url(./images/header-bg.png) no-repeat;
   background-size: 100% 120%;
-<<<<<<< HEAD
-  color: #673ab7;
-=======
-  color: var(--text-color);
->>>>>>> ea2318d (change-bg-images)
+ color: var(--text-color);
+
   letter-spacing: 5px;
 }
 main {
@@ -46,11 +43,7 @@ main {
   background-color: #0000001f;
   width: 45%;
   height: 35%;
-<<<<<<< HEAD
-  color: #673ab7;
-=======
   color: var(--text-color);
->>>>>>> ea2318d (change-bg-images)
   font-weight: 200;
   border-radius: 10px;
 }

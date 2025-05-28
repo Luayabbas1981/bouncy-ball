@@ -37,7 +37,7 @@ let groundIndex = 0;
 let keyboard = true;
 let animateId = null;
 let bgArray = [];
-let speed = isMobile ? 1.2 : 5;
+let speed = isMobile ? 3 : 5;
 const bGImagesArray = [
   "./images/red-ground.jpg",
   "./images/lila-ground.jpg",
