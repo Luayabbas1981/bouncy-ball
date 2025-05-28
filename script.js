@@ -46,6 +46,7 @@ const bGImagesArray = [
   "./images/blue-ground.jpg",
   "./images/orange-ground.jpg",
   "./images/green-ground.jpg",
+  "./images/yellow-ground.jpg",
 ];
 const ballsArray = [
   "red-ball",
@@ -53,6 +54,7 @@ const ballsArray = [
   "blue-ball",
   "orange-ball",
   "green-ball",
+  "yellow.png",
 ];
 
 const ballTouchPoint = isMobile ? canvasHeight * 0.81 : canvasHeight * 0.77;
@@ -168,17 +170,17 @@ function animate() {
       cancelAnimationFrame(animateId);
       warnText.textContent = "Beware, Beware! your speed has been increased!";
       warnContainer.classList.remove("d-none");
-      isMobile ? (speed += 0.2) : (speed += 0.3);
+      speed += 0.2;
       ball.speed = speed;
       bG1.speed = speed;
       bG2.speed = speed;
     }
-    if (score % 50 === 0 && ballsNumber < 5) {
+    if (score % 80 === 0 && ballsNumber < ballsArray.length) {
       cancelAnimationFrame(animateId);
       ballsNumber++;
       warnContainer.classList.remove("d-none");
       warnText.textContent =
-        "Beware, Beware! your speed has been increased and yiu've got a new ball!";
+        "Beware, Beware! your speed has been increased and you've got a new ball!";
       newBallImage.src = `./images/${ballsArray[ballsNumber - 1]}.png`;
     }
   }
