@@ -30,7 +30,7 @@ header {
   height: 4%;
   background: url(./images/header-bg.png) no-repeat;
   background-size: 100% 120%;
- color: var(--text-color);
+  color: var(--text-color);
 
   letter-spacing: 5px;
 }
@@ -63,7 +63,7 @@ main {
 }
 .start-btn,
 .restart-btn,
-.new-ball-btn {
+.warn-btn {
   border: 2px solid #ff9800;
   border-radius: 0.5rem;
   color: #ff9800;
@@ -74,7 +74,7 @@ main {
   color: #9c27b0;
 }
 
-.new-ball {
+.warn {
   width: 30%;
   height: 30%;
   background-color: #fff;
@@ -84,7 +84,7 @@ main {
   border-radius: 1rem;
 }
 
-.new-ball-btn {
+.warn-btn {
   color: var(--text-color);
   border: 3px solid var(--border-color);
 }
@@ -150,10 +150,10 @@ main {
   }
   .start-btn,
   .restart-btn,
-  .new-ball-btn {
+  .warn-btn {
     font-size: 1rem;
   }
-  .new-ball {
+  .warn {
     width: 90%;
     height: 40%;
     font-size: 1rem;

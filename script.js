@@ -7,8 +7,9 @@ const isMobile =
 const main = document.querySelector("main");
 const startPage = document.querySelector(".start-page");
 const endPage = document.querySelector(".end-page");
-const newBallPage = document.querySelector(".new-ball-con");
-const newBall = document.querySelector(".new-ball img");
+const warnContainer = document.querySelector(".warn-con");
+const warnText = warnContainer.querySelector(".warn-con .warn-text");
+const newBallImage = warnContainer.querySelector(".warn-con .warn-image");
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 const canvasWidth = (canvas.width = main.offsetWidth);
@@ -21,7 +22,7 @@ endSound.volume = 0.1;
 // Game controls
 const startBtn = document.querySelector(".start-btn");
 const endBtn = document.querySelector(".restart-btn");
-const newBallBtn = document.querySelector(".new-ball-btn");
+const warnBtn = document.querySelector(".warn-btn");
 const scoreDiv = document.querySelector(".score span");
 
 // Game values
@@ -37,6 +38,7 @@ let groundIndex = 0;
 let keyboard = true;
 let animateId = null;
 let bgArray = [];
+let ballsNumber = 3;
 let speed = isMobile ? 3 : 5;
 const bGImagesArray = [
   "./images/red-ground.jpg",
@@ -124,9 +126,8 @@ ball = new Ball(
   "./images/lila-ball.png",
   canvasWidth * 0.3,
   ballStartPosition + 50,
-  isMobile ? canvasWidth * 0.1 : canvasWidth * 0.05,
-  isMobile ? canvasWidth * 0.1 : canvasWidth * 0.05
-
+  isMobile ? canvasWidth * 0.1 : canvasWidth * 0.04,
+  isMobile ? canvasWidth * 0.1 : canvasWidth * 0.04
 );
 
 bG1 = new Background(
@@ -165,11 +166,20 @@ function animate() {
     scoreDiv.textContent = score;
     if (score % 40 === 0) {
       cancelAnimationFrame(animateId);
-      newBallPage.classList.remove("d-none");
-      isMobile ? (speed += 0.2) : speed++;
+      warnText.textContent = "Beware, Beware! your speed has been increased!";
+      warnContainer.classList.remove("d-none");
+      isMobile ? (speed += 0.2) : (speed += 0.3);
       ball.speed = speed;
       bG1.speed = speed;
       bG2.speed = speed;
+    }
+    if (score % 50 === 0 && ballsNumber < 5) {
+      cancelAnimationFrame(animateId);
+      ballsNumber++;
+      warnContainer.classList.remove("d-none");
+      warnText.textContent =
+        "Beware, Beware! your speed has been increased and yiu've got a new ball!";
+      newBallImage.src = `./images/${ballsArray[ballsNumber - 1]}.png`;
     }
   }
   if (bG2.x <= canvas.getBoundingClientRect().left) {
@@ -194,8 +204,8 @@ endBtn.onclick = () => {
   location.reload();
 };
 
-newBallBtn.onclick = () => {
-  newBallPage.classList.add("d-none");
+warnBtn.onclick = () => {
+  warnContainer.classList.add("d-none");
   animate();
 };
 
@@ -203,7 +213,9 @@ newBallBtn.onclick = () => {
 function createRandomBall() {
   let randomBall;
   do {
-    randomBall = Math.floor(Math.random() * ballsArray.length);
+    randomBall = Math.floor(
+      Math.random() * ballsArray.slice(0, ballsNumber).length
+    );
   } while (randomBall === previousBall);
   previousBall = randomBall;
   return randomBall;
@@ -211,7 +223,7 @@ function createRandomBall() {
 
 // Change ground color functions
 function changeBgColor() {
-  if (groundIndex === bGImagesArray.length) {
+  if (groundIndex === bGImagesArray.slice(0, ballsNumber).length) {
     groundIndex = 0;
   }
   let newBg = bGImagesArray[groundIndex];
