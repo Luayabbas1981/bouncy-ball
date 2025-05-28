@@ -23,15 +23,9 @@ const startBtn = document.querySelector(".start-btn");
 const endBtn = document.querySelector(".restart-btn");
 const newBallBtn = document.querySelector(".new-ball-btn");
 const scoreDiv = document.querySelector(".score span");
-<<<<<<< HEAD
-=======
-let speed = isMobile ? 3 : 5;
->>>>>>> ea2318d (change-bg-images)
+
 // Game values
-const isMobile =
-  /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-    navigator.userAgent
-  );
+
 let ball = null;
 let bG1 = null;
 let bG2 = null;
@@ -58,13 +52,10 @@ const ballsArray = [
   "orange-ball",
   "green-ball",
 ];
-<<<<<<< HEAD
-const ballTouchPoint = isMobile ? canvasHeight * 0.8 : canvasHeight * 0.77;
-const ballStartPosition = isMobile ? canvasHeight * 0.35 : canvasHeight * 0.25;
-=======
+
 const ballTouchPoint = isMobile ? canvasHeight * 0.81 : canvasHeight * 0.77;
 const ballStartPosition = isMobile ? canvasHeight * 0.45 : canvasHeight * 0.25;
->>>>>>> ea2318d (change-bg-images)
+
 // Game classes
 
 class Background {
@@ -133,13 +124,9 @@ ball = new Ball(
   "./images/lila-ball.png",
   canvasWidth * 0.3,
   ballStartPosition + 50,
-<<<<<<< HEAD
-  isMobile ? canvasWidth * 0.11 : canvasWidth * 0.05,
-  isMobile ? canvasWidth * 0.11 : canvasWidth * 0.05
-=======
   isMobile ? canvasWidth * 0.1 : canvasWidth * 0.05,
   isMobile ? canvasWidth * 0.1 : canvasWidth * 0.05
->>>>>>> ea2318d (change-bg-images)
+
 );
 
 bG1 = new Background(
