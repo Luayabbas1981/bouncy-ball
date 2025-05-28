@@ -12,6 +12,7 @@
 }
 * {
   font-family: "bubbles";
+  box-sizing: border-box;
 }
 body {
   height: 100vh;
@@ -21,13 +22,19 @@ body {
   cursor: pointer;
   font-weight: bolder;
   font-size: 1.5rem;
+  --text-color: #3f51b5;
+  --border-color: #0877cc;
 }
 header {
   margin-bottom: 0;
   height: 4%;
   background: url(./images/header-bg.png) no-repeat;
   background-size: 100% 120%;
+<<<<<<< HEAD
   color: #673ab7;
+=======
+  color: var(--text-color);
+>>>>>>> ea2318d (change-bg-images)
   letter-spacing: 5px;
 }
 main {
@@ -36,10 +43,16 @@ main {
 }
 
 .start-page .modals {
+  background-color: #0000001f;
   width: 45%;
   height: 35%;
+<<<<<<< HEAD
   color: #673ab7;
+=======
+  color: var(--text-color);
+>>>>>>> ea2318d (change-bg-images)
   font-weight: 200;
+  border-radius: 10px;
 }
 .start-page {
   cursor: default;
@@ -50,9 +63,11 @@ main {
 }
 .modals span.set-speed {
   font-size: 1.5rem;
-  color: #2196f3;
+  color: var(--text-color);
 }
-
+.cards-con {
+  top: 5%;
+}
 .start-btn,
 .restart-btn,
 .new-ball-btn {
@@ -70,15 +85,15 @@ main {
   width: 30%;
   height: 30%;
   background-color: #fff;
-  color: #1010ad;
+  color: var(--text-color);
   font-weight: 200;
-  border: 4px solid #0877cc;
+  border: 4px solid var(--border-color);
   border-radius: 1rem;
 }
 
 .new-ball-btn {
-  color: rgb(0, 55, 218);
-  border: 3px solid #0d78ca;
+  color: var(--text-color);
+  border: 3px solid var(--border-color);
 }
 
 .modals p {
@@ -109,10 +124,10 @@ main {
   }
 }
 .modals img:first-of-type {
-  left: 1%;
+  left: 5%;
 }
 .modals img:last-of-type {
-  right: 1%;
+  right: 5%;
 }
 
 @keyframes move-balls {
