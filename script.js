@@ -44,16 +44,16 @@ const bGImagesArray = [
   "./images/red-ground.jpg",
   "./images/lila-ground.jpg",
   "./images/blue-ground.jpg",
-  "./images/orange-ground.jpg",
   "./images/green-ground.jpg",
+  "./images/orange-ground.jpg",
   "./images/yellow-ground.jpg",
 ];
 const ballsArray = [
   "red-ball",
   "lila-ball",
   "blue-ball",
-  "orange-ball",
   "green-ball",
+  "orange-ball",
   "yellow.png",
 ];
 
