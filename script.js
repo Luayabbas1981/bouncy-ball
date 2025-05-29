@@ -168,6 +168,7 @@ function animate() {
     scoreDiv.textContent = score;
     if (score % 40 === 0) {
       cancelAnimationFrame(animateId);
+      newBallImage.src = "";
       warnText.textContent = "Beware, Beware! your speed has been increased!";
       warnContainer.classList.remove("d-none");
       speed += 0.2;

@@ -11,7 +11,6 @@
   src: url(./fonts/RubikBubbles-Regular.ttf);
 }
 * {
-  font-family: "bubbles";
   box-sizing: border-box;
 }
 body {
@@ -27,12 +26,13 @@ body {
 }
 header {
   margin-bottom: 0;
+  translate: 0 5%;
   height: 4%;
   background: url(./images/header-bg.png) no-repeat;
   background-size: 100% 120%;
   color: var(--text-color);
-
   letter-spacing: 5px;
+  font-family: monospace;
 }
 main {
   margin: 0;
@@ -40,7 +40,7 @@ main {
 }
 
 .start-page .modals {
-  background-color: #0000001f;
+  background-color: #0000003f;
   width: 45%;
   height: 35%;
   color: var(--text-color);
@@ -49,6 +49,9 @@ main {
 }
 .start-page {
   cursor: default;
+}
+.modals {
+  font-family: "bubbles";
 }
 .modals span {
   font-size: 2.2rem;

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
+
     <!-- Bootstrap link -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -21,7 +21,7 @@
     />
     <!-- Css link -->
     <link rel="stylesheet" href="style.css" />
-    <title>bouncy-ball</title>
+    <title>color-clash</title>
   </head>
   <body>
     <header>
@@ -29,7 +29,6 @@
         <div
           class="row justify-content-center align-items-center text-center p-2"
         >
-     
           <div class="score col col-lg-3">
             SCORE <span style="color: #f44336">0</span>
           </div>
@@ -47,21 +46,21 @@
       >
         <div class="cards-con position-absolute start-0 translate-middle">
           <div class="cards position-relative">
-            <span style="color: #8f80fd; --p: 1">B</span>
+            <span style="color: #8f80fd; --p: 1">C</span>
             <span style="color: #32bd03; --p: 2">O</span>
-            <span style="color: #99c6fa; --p: 3">U</span>
-            <span style="color: #febe47; --p: 4">N</span>
-            <span style="color: #0ba2ff; --p: 5">C</span>
-            <span style="color: #fb2727; --p: 6">Y</span>
-            <span style="color: #cf9df9; --p: 7"></span>
-            <span style="color: #eb5efb; --p: 8">B</span>
+            <span style="color: #99c6fa; --p: 3">L</span>
+            <span style="color: #febe47; --p: 4">O</span>
+            <span style="color: #0ba2ff; --p: 5">R</span>
+            <span style="color: #cf9df9; --p: 6"></span>
+            <span style="color: #fb2727; --p: 7">C</span>
+            <span style="color: #eb5efb; --p: 8">L</span>
             <span style="color: #a539fd; --p: 9">A</span>
-            <span style="color: #ff8801; --p: 10">L</span>
-            <span style="color: #f83838; --p: 11">L</span>
+            <span style="color: #ff8801; --p: 10">S</span>
+            <span style="color: #f83838; --p: 11">H</span>
           </div>
         </div>
         <button class="start-btn">Start game</button>
-       
+
         <h4 class="text-center">
           click mouse or space on keyboard to match ground color with ball color
         </h4>
@@ -76,17 +75,17 @@
         class="modals position-relative d-flex flex-column justify-content-center align-items-center gap-3 w-25 text-center"
       >
         <div>
-          <span style="color: #897af8">B</span>
+          <span style="color: #897af8">C</span>
           <span style="color: #71f745">O</span>
-          <span style="color: #99c6fa">U</span>
-          <span style="color: #febe47">N</span>
-          <span style="color: #8900c9">C</span>
-          <span style="color: #fb2727">Y</span>
-          <span style="color: #cf9df9"></span>
-          <span style="color: #ffcf77">B</span>
+          <span style="color: #99c6fa">L</span>
+          <span style="color: #febe47">O</span>
+          <span style="color: #8900c9">R</span>
+          <span style="color: #fb2727"></span>
+          <span style="color: #cf9df9">C</span>
+          <span style="color: #ffcf77">L</span>
           <span style="color: #a539fd">A</span>
-          <span style="color: #8ebef6">L</span>
-          <span style="color: #f83838">L</span>
+          <span style="color: #8ebef6">S</span>
+          <span style="color: #f83838">H</span>
         </div>
 
         <button class="restart-btn">Play again</button>
@@ -100,8 +99,10 @@
       <div
         class="warn p-3 d-flex flex-column justify-content-center align-items-center"
       >
-        <span class="warn-text text-center p-3">Beware! your speed has been increased</span>
-        <img src="" alt="" class=" warn-image"/>
+        <span class="warn-text text-center p-3"
+          >Beware! your speed has been increased</span
+        >
+        <img src="" alt="" class="warn-image" />
         <button class="warn-btn p-2 px-5">Go!</button>
       </div>
     </div>
