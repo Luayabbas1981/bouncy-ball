@@ -1,8 +1,17 @@
 // Check device
-const isMobile =
-  /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-    navigator.userAgent
-  );
+let isMobile = false;
+(function () {
+  function isMobileDevice() {
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    const isMobileUA =
+      /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(
+        userAgent.toLowerCase()
+      );
+    const isSmallScreen = window.innerWidth <= 768;
+    return isMobileUA || isSmallScreen;
+  }
+  isMobile = isMobileDevice();
+})();
 // Game elements
 const main = document.querySelector("main");
 const startPage = document.querySelector(".start-page");
@@ -12,8 +21,8 @@ const warnText = warnContainer.querySelector(".warn-con .warn-text");
 const newBallImage = warnContainer.querySelector(".warn-con .warn-image");
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
-const canvasWidth = (canvas.width = main.offsetWidth);
-const canvasHeight = (canvas.height = main.offsetHeight);
+let canvasWidth = (canvas.width = main.offsetWidth);
+let canvasHeight = (canvas.height = main.offsetHeight);
 // Sound elements
 const bongSound = document.querySelector(".bong-sound");
 const endSound = document.querySelector(".end-sound");
@@ -26,12 +35,14 @@ const warnBtn = document.querySelector(".warn-btn");
 const scoreDiv = document.querySelector(".score span");
 
 // Game values
-
+let isGameStarted = false;
 let ball = null;
 let bG1 = null;
 let bG2 = null;
 let bgSpeed = null;
 let ballSpeed = null;
+let ballTouchPoint = null;
+let ballStartPosition = null;
 let previousBall = 1;
 let score = 0;
 let groundIndex = 0;
@@ -39,14 +50,15 @@ let keyboard = true;
 let animateId = null;
 let bgArray = [];
 let ballsNumber = 3;
-let speed = isMobile ? 3 : 5;
-const bGImagesArray = [
+let speed = isMobile ? 3 : 4;
+const bgImagesArray = [
   "./images/red-ground.jpg",
   "./images/lila-ground.jpg",
   "./images/blue-ground.jpg",
   "./images/green-ground.jpg",
   "./images/orange-ground.jpg",
   "./images/yellow-ground.jpg",
+  "./images/pink-ground.jpg",
 ];
 const ballsArray = [
   "red-ball",
@@ -55,10 +67,8 @@ const ballsArray = [
   "green-ball",
   "orange-ball",
   "yellow.png",
+  "pink.png",
 ];
-
-const ballTouchPoint = isMobile ? canvasHeight * 0.81 : canvasHeight * 0.77;
-const ballStartPosition = isMobile ? canvasHeight * 0.45 : canvasHeight * 0.25;
 
 // Game classes
 
@@ -123,32 +133,38 @@ class Ball {
 }
 
 // Canvas elements
+function generateGameElements() {
+  canvasWidth = canvas.width = main.offsetWidth;
+  canvasHeight = canvas.height = main.offsetHeight;
+  ballTouchPoint = canvasHeight * 0.8;
+  ballStartPosition = isMobile ? canvasHeight * 0.45 : canvasHeight * 0.25;
+  bgArray = [];
+  ball = new Ball(
+    "./images/lila-ball.png",
+    canvasWidth * 0.4,
+    ballStartPosition + 50,
+    isMobile ? canvasWidth * 0.1 : canvasWidth * 0.045,
+    isMobile ? canvasWidth * 0.1 : canvasWidth * 0.045
+  );
 
-ball = new Ball(
-  "./images/lila-ball.png",
-  canvasWidth * 0.3,
-  ballStartPosition + 50,
-  isMobile ? canvasWidth * 0.1 : canvasWidth * 0.04,
-  isMobile ? canvasWidth * 0.1 : canvasWidth * 0.04
-);
-
-bG1 = new Background(
-  "./images/lila-ground.jpg",
-  0,
-  0,
-  canvasWidth,
-  canvasHeight
-);
-bgArray.push(bG1);
-bG2 = new Background(
-  "./images/lila-ground.jpg",
-  canvasWidth,
-  0,
-  canvasWidth,
-  canvasHeight
-);
-bgArray.push(bG2);
-
+  bG1 = new Background(
+    "./images/lila-ground.jpg",
+    0,
+    0,
+    canvasWidth,
+    canvasHeight
+  );
+  bgArray.push(bG1);
+  bG2 = new Background(
+    "./images/lila-ground.jpg",
+    canvasWidth,
+    0,
+    canvasWidth,
+    canvasHeight
+  );
+  bgArray.push(bG2);
+}
+generateGameElements();
 // Game functions
 function startGame() {
   ballSpeed = speed;
@@ -159,6 +175,11 @@ function startGame() {
   animate();
 }
 function animate() {
+  if (!isGameStarted) {
+    canvasWidth = canvas.width = main.offsetWidth;
+    canvasHeight = canvas.height = main.offsetHeight;
+  }
+  isGameStarted = true;
   animateId = requestAnimationFrame(animate);
   ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
   if (ball.y >= ballTouchPoint && ball.id !== bG1.id) {
@@ -166,17 +187,17 @@ function animate() {
   } else if (ball.y >= ballTouchPoint && ball.id === bG1.id) {
     score += 10;
     scoreDiv.textContent = score;
-    if (score % 40 === 0) {
+    if (score % 30 === 0) {
       cancelAnimationFrame(animateId);
       newBallImage.src = "";
       warnText.textContent = "Beware, Beware! your speed has been increased!";
       warnContainer.classList.remove("d-none");
-      speed += 0.2;
+     isMobile ? (speed += 0.2) : (speed += 0.35);
       ball.speed = speed;
       bG1.speed = speed;
       bG2.speed = speed;
     }
-    if (score % 80 === 0 && ballsNumber < ballsArray.length) {
+    if (score % 60 === 0 && ballsNumber < ballsArray.length) {
       cancelAnimationFrame(animateId);
       ballsNumber++;
       warnContainer.classList.remove("d-none");
@@ -226,10 +247,10 @@ function createRandomBall() {
 
 // Change ground color functions
 function changeBgColor() {
-  if (groundIndex === bGImagesArray.slice(0, ballsNumber).length) {
+  if (groundIndex === bgImagesArray.slice(0, ballsNumber).length) {
     groundIndex = 0;
   }
-  let newBg = bGImagesArray[groundIndex];
+  let newBg = bgImagesArray[groundIndex];
 
   bgArray.forEach((item) => {
     item.bg.src = "";
@@ -256,3 +277,8 @@ function endGame() {
   bongSound.muted = true;
   endSound.play();
 }
+
+// Resizer
+window.addEventListener("resize", () => {
+  generateGameElements();
+});

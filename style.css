@@ -39,14 +39,16 @@ main {
   height: 96%;
 }
 
-.start-page .modals {
-  background-color: #0000003f;
-  width: 45%;
-  height: 35%;
+.start-page .modals,
+.end-page .modals {
+  background-color: #0000002a;
+  width: 500px;
+  height: 45%;
   color: var(--text-color);
   font-weight: 200;
   border-radius: 10px;
 }
+
 .start-page {
   cursor: default;
 }
@@ -78,7 +80,6 @@ main {
 }
 
 .warn {
-  width: 30%;
   height: 30%;
   background-color: #fff;
   color: var(--text-color);
@@ -113,10 +114,10 @@ main {
 }
 @keyframes swing {
   70% {
-    transform: translateX(calc(35px * var(--p))) rotate(20deg);
+    transform: translateX(calc(39px * var(--p))) rotate(20deg);
   }
   30% {
-    transform: translateX(calc(35px * var(--p))) rotate(20deg);
+    transform: translateX(calc(39px * var(--p))) rotate(20deg);
   }
 }
 .modals img:first-of-type {
@@ -138,10 +139,7 @@ main {
   header {
     font-size: 1rem;
   }
-  .start-page .modals,
-  .end-page .modals {
-    width: 90% !important;
-  }
+
   .modals span {
     font-size: 1.2rem;
   }
